@@ -10,3 +10,4 @@ lo.sh
 old
 .tox/
 tests/test.py
+*.whl

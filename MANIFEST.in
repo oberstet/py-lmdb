@@ -7,3 +7,4 @@ include ChangeLog
 include LICENSE
 prune docs/_build
 prune lmdb/__pycache__
+recursive-include build/lib *

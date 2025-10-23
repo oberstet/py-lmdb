@@ -31,11 +31,16 @@ import platform
 from setuptools import Extension
 from setuptools import setup
 
+
+# force use of bundled & patched LMDB, and using CFFI
+os.environ.pop('LMDB_FORCE_SYSTEM', None)
+os.environ.pop('LMDB_PURE', None)
+os.environ['LMDB_FORCE_CFFI'] = '1'
+
 try:
     import memsink
 except ImportError:
     memsink = None
-
 
 if hasattr(platform, 'python_implementation'):
     use_cpython = platform.python_implementation() == 'CPython'
@@ -201,7 +206,7 @@ setup(
     license='OLDAP-2.8',
     url='http://github.com/jnwatson/py-lmdb/',
     packages=['lmdb'],
-
+    include_package_data=True,
     classifiers=[
         "Programming Language :: Python",
         "Programming Language :: Python :: Implementation :: CPython",
